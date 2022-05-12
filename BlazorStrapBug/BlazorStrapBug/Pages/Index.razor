@@ -1,0 +1,48 @@
+﻿@page "/"
+
+<PageTitle>Index</PageTitle>
+
+<p>
+    Selected: 
+    <ul>
+        @foreach (Model m in models)
+        {
+            <li>
+                @m.Name : @m.IsSelected
+            </li>
+        }
+    </ul>
+</p>
+
+<p>
+    Select:
+</p>
+
+<p>
+    <BSDropdown>
+        <BSDropdownToggle>Pets:</BSDropdownToggle>
+        <BSDropdownMenu>
+            @foreach (Model m in models)
+            {
+                <BSDropdownItem StayOpen="true">
+                    <span>
+                        <label>
+                            <input type="checkbox" @bind="m.IsSelected" /> @m.Name
+                        </label>
+                    </span>
+                </BSDropdownItem>
+            }
+        </BSDropdownMenu>
+    </BSDropdown>
+</p>
+
+@code
+{
+    List<Model> models = new List<Model>
+    {
+        new Model("Dog"),
+        new Model("Cat"),
+        new Model("Lizard"),
+        new Model("Dragon"),
+    };
+}
